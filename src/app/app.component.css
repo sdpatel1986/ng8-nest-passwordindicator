@@ -1,0 +1,117 @@
+.container {
+    margin-top: 1em;
+}
+
+.card-header {
+    text-align: center;
+    padding-top: 1em;
+    padding: 2em;
+}
+
+.heading {
+    text-align: center;
+    font-size: 6vh;
+}
+
+.page-content {
+    margin-top: 8vh;
+    font-size: 2vh;
+}
+
+.password-content-side {
+    
+}
+
+.password-text {
+    height: 5vh;
+}
+
+.password-text input {
+    text-align: center;
+}
+
+#example {
+    text-align: left;
+    margin-top: 3vh;
+    color: #6884b0;
+}
+
+.progress {
+    margin-top: 2em;
+    border-radius: 0px;
+    background: white;
+}
+
+.review {
+    width: 100%;
+    border: solid;
+    border-width: 0.5px;
+    margin-top: 4em;
+    height: 22vh;
+}
+
+.review-left {
+    border-right: solid 0.5px;
+    text-align: center;
+    padding-top: 1em;
+    padding: 2em;
+}
+
+.review-right {
+    text-align: center;
+    padding-top: 1em;
+    padding: 2em;
+}
+
+.review-right ol {
+    text-align: left;
+}
+
+.red {
+    height: 2em;
+    background: red;
+    border: solid;
+    border-color: white;
+}
+
+.yellow {
+    height: 2em;
+    background: yellow;
+    border: solid;
+    border-color: white;
+}
+
+.green {
+    height: 2em;
+    background: green;
+    border: solid;
+    border-color: white;
+}
+
+.default {
+    height: 2em;
+    background: whitesmoke;
+    border: solid;
+    border-color: white;
+}
+
+.passStatus {
+    text-align: center;
+    margin-top: 1em;
+}
+
+.checkers {
+    color: green;
+}
+
+.passStatus #red {
+    color: red;
+}
+
+.passStatus #yellow {
+    color: yellow;
+}
+
+.passStatus #green {
+    color: green;
+}

@@ -1,21 +1,182 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="container">
+  <div class="card">
+      <div class="card-header">
+          <h2>
+              {{ textContent.headerText }}
+          </h2> 
+      </div>
 
-<router-outlet></router-outlet>
+      <div class="card-body">
+          <div class="input-group mb-3 password-text">
+              <input [(ngModel)]="password" maxlength="24" id="password" type="password" (keyup)="checkPasswordStrength()" class="form-control" aria-label="Password" aria-describedby="basic-addon1">
+              <div class="input-group-prepend" (click)="passwordType()">
+                  <span *ngIf="!watchPassword" class="input-group-text" id="basic-addon1"><i class="fas fa-eye-slash"></i></span>
+                  <span *ngIf="watchPassword" class="input-group-text" id="basic-addon1"><i class="fas fa-eye"></i></span>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                  <p *ngIf="!length">
+                      {{ textContent.characterInfoText }}
+                      {{ passwordLength }}
+                  </p>
+                  <p class="checkers" *ngIf="length">
+                      {{ textContent.characterInfoText }}
+                      {{ passwordLength }}
+                  </p>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                  <p *ngIf="!upperCase">
+                      {{ textContent.conditionText1 }}
+                      <i class="fas fa-times"></i>
+                  </p>
+                  <p class="checkers" *ngIf="upperCase">
+                      {{ textContent.conditionText1 }}
+                      <i class="fas fa-check"></i>
+                  </p>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                  <p *ngIf="!lowerCase">
+                      {{ textContent.conditionText2 }}
+                      <i class="fas fa-times"></i>
+                  </p>
+                  <p class="checkers" *ngIf="lowerCase">
+                      {{ textContent.conditionText2 }}
+                      <i class="fas fa-check"></i>
+                  </p>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                  <p *ngIf="!numeric">
+                      {{ textContent.conditionText3 }}
+                      <i class="fas fa-times"></i>
+                  </p>
+                  <p class="checkers" *ngIf="numeric">
+                      {{ textContent.conditionText3 }}
+                      <i class="fas fa-check"></i>
+                  </p>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                  <p *ngIf="!symbols">
+                      {{ textContent.conditionText4 }}
+                      <i class="fas fa-times"></i>
+                  </p>
+                  <p class="checkers" *ngIf="symbols">
+                      {{ textContent.conditionText4 }}
+                      <i class="fas fa-check"></i>
+                  </p>
+              </div>
+          </div>
+
+
+          <div class="row progress">
+              <div *ngIf="progress[0]" class="col-lg-1 col-md-1 col-sm-1 col-xs-1 red"></div>
+              <div *ngIf="!progress[0]" class="col-lg-1 col-md-1 col-sm-1 col-xs-1 default"></div>
+
+              <div *ngIf="progress[1]" class="col-lg-1 col-md-1 col-sm-1 col-xs-1 red"></div>
+              <div *ngIf="!progress[1]" class="col-lg-1 col-md-1 col-sm-1 col-xs-1 default"></div>
+
+              <div *ngIf="progress[2]" class="col-lg-1 col-md-1 col-sm-1 col-xs-1 red"></div>
+              <div *ngIf="!progress[2]" class="col-lg-1 col-md-1 col-sm-1 col-xs-1 default"></div>
+
+              <div *ngIf="progress[3]" class="col-lg-1 col-md-1 col-sm-1 col-xs-1 red"></div>
+              <div *ngIf="!progress[3]" class="col-lg-1 col-md-1 col-sm-1 col-xs-1 default"></div>
+
+              <div *ngIf="progress[4]" class="col-lg-1 col-md-1 col-sm-1 col-xs-1 yellow"></div>
+              <div *ngIf="!progress[4]" class="col-lg-1 col-md-1 col-sm-1 col-xs-1 default"></div>
+
+              <div *ngIf="progress[5]" class="col-lg-1 col-md-1 col-sm-1 col-xs-1 yellow"></div>
+              <div *ngIf="!progress[5]" class="col-lg-1 col-md-1 col-sm-1 col-xs-1 default"></div>
+
+              <div *ngIf="progress[6]" class="col-lg-1 col-md-1 col-sm-1 col-xs-1 yellow"></div>
+              <div *ngIf="!progress[6]" class="col-lg-1 col-md-1 col-sm-1 col-xs-1 default"></div>
+
+              <div *ngIf="progress[7]" class="col-lg-1 col-md-1 col-sm-1 col-xs-1 yellow"></div>
+              <div *ngIf="!progress[7]" class="col-lg-1 col-md-1 col-sm-1 col-xs-1 default"></div>
+
+              <div *ngIf="progress[8]" class="col-lg-1 col-md-1 col-sm-1 col-xs-1 green"></div>
+              <div *ngIf="!progress[8]" class="col-lg-1 col-md-1 col-sm-1 col-xs-1 default"></div>
+
+              <div *ngIf="progress[9]" class="col-lg-1 col-md-1 col-sm-1 col-xs-1 green"></div>
+              <div *ngIf="!progress[9]" class="col-lg-1 col-md-1 col-sm-1 col-xs-1 default"></div>
+
+              <div *ngIf="progress[10]" class="col-lg-1 col-md-1 col-sm-1 col-xs-1 green"></div>
+              <div *ngIf="!progress[10]" class="col-lg-1 col-md-1 col-sm-1 col-xs-1 default"></div>
+
+              <div *ngIf="progress[11]" class="col-lg-1 col-md-1 col-sm-1 col-xs-1 green"></div>
+              <div *ngIf="!progress[11]" class="col-lg-1 col-md-1 col-sm-1 col-xs-1 default"></div>
+          </div>
+
+
+          <div class="row passStatus">
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                  <h4 id="red" *ngIf="count>0 && count<=4">
+                      {{ textContent.statusText1 }}
+                  </h4>
+              </div>
+
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                  <h4 id="yellow" *ngIf="count>=5 && count<=8">
+                      {{ textContent.statusText2 }}
+                  </h4>
+              </div>
+
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                  <h4 id="green" *ngIf="count>=9 && count<=12">
+                      {{ textContent.statusText3 }}
+                  </h4>
+              </div>
+          </div>
+
+      </div>
+
+
+      <div class="card-footer">
+
+          <div class="row">
+
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 review-left">
+                  <h4>{{ textContent.footerLeftBoxHeaderText }}</h4>
+                  <p>{{ review }}</p>
+              </div>
+
+
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 review-right">
+                  <h4>
+                      {{ textContent.footerRightBoxHeaderText }}
+                  </h4>
+
+                  <ol>
+                      <li>
+                          {{ textContent.footerRightBoxInfoText1 }}
+                      </li>
+
+                      <li>
+                          {{ textContent.footerRightBoxInfoText2 }}
+                          <ul>
+                              <li>
+                                  {{ textContent.footerRightBoxConditionText1 }}
+                              </li>
+                              <li>
+                                  {{ textContent.footerRightBoxConditionText2 }}
+                              </li>
+                              <li>
+                                  {{ textContent.footerRightBoxConditionText3 }}
+                              </li>
+                              <li>
+                                  {{ textContent.footerRightBoxConditionText4 }}
+                              </li>
+                          </ul>
+                      </li>
+                  </ol>
+
+                  <p id="example">
+                      {{ textContent.footerRightBoxInfoText3 }}
+                  </p>
+
+              </div>
+          </div>
+
+      </div>
+  </div>
+</div>
