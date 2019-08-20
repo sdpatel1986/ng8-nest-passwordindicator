@@ -3,7 +3,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-const url = "http://localhost:3000/";
+const indicator_url = "http://localhost:4200/api/indicator";
 
 @Injectable()
 export class PasswordService {
@@ -16,6 +16,6 @@ export class PasswordService {
             password: password
         };
 
-        return this.http.post(url, data);
+        return this.http.post(indicator_url, data);
     }
 }
